@@ -14,9 +14,20 @@ type (
 		TotalLike int `json:"tatl_like"`
 	}
 
-	responseHistoryList struct {
+	response struct {
+		Header *header `json:"header"`
+		Body *body `json:"body"`
+	}
+
+	header struct {
+		ResultCode string `json:"result_code"`
+		ResponseId string `json:"response_id"`
+	}
+
+	body struct {
 		HistoryList []history `json:"history_list"`
 	}
+
 
 )
 
@@ -53,8 +64,17 @@ func getHistoryList(c echo.Context) error {
 		TotalLike: 15,
 	})
 
-	response := new(responseHistoryList)
-	response.HistoryList = historyList
+	body := new(body)
+	body.HistoryList = historyList
+
+	header := new(header)
+	header.ResultCode = "200"
+	header.ResponseId = "responseId00001"
+
+	response := response{
+		Header: header,
+		Body: body,
+	}
 
 	return c.JSON(http.StatusOK, response)
 }

@@ -11,7 +11,7 @@ type (
 		Number int `json:"number"`
 		Url        string `json:"url"`
 		SendUser string `json:"send_user"`
-		TotalLike int `json:"tatl_like"`
+		TotalLike int `json:"total_like"`
 	}
 
 	response struct {

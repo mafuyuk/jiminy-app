@@ -9,7 +9,7 @@ curl -H "Content-Type: application/json" -X GET http://localhost:8888/jiminy/v1/
 {
     "header": {
         "response_id": "responseId00001", 
-        "result_code": "200"
+        "result_code": "0"
     },
     "body": {
         "history_list": [

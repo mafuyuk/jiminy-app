@@ -3,7 +3,7 @@ JiMiNy
 
 ### GET
 ```bash
-curl -H "Content-Type: application/json" -X GET http://localhost:8888/jiminy/v1/history/list/1
+curl -H "Content-Type: application/json" -X GET http://localhost:61970/jiminy/history/1
 
 # => 
 {
@@ -28,4 +28,11 @@ curl -H "Content-Type: application/json" -X GET http://localhost:8888/jiminy/v1/
         ]
     }
 }
+
+### POST
+```bash
+curl -H "Content-Type: application/json" -X POST http://localhost:61970/jiminy/history
+
+# =>
+hello post"
 ```

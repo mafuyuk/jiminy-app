@@ -61,3 +61,8 @@ func GetHistory(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, response)
 }
+
+// ダミーPOST
+func PostDummy(c echo.Context) error {
+	return c.JSON(http.StatusOK, "hello post")
+}

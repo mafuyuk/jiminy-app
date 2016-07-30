@@ -7,5 +7,5 @@ import (
 
 func main() {
 	route := router.Init()
-	route.Run(fasthttp.New(":8888"))
+	route.Run(fasthttp.New(":61970"))
 }

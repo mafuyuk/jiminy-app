@@ -7,9 +7,9 @@ import (
 )
 
 var	db *gorm.DB
-const sourceFormat string = "%s:%s@tcp(%s:%s)/%s?parseTime=true"
+const sourceFormat string = "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true"
 
-func Initialize() error {
+func InitializeMysql() error {
 	var err error
 	dataSource := fmt.Sprintf(sourceFormat, "root", "1111", "192.168.99.100", "3306", "test")
 	db, err = gorm.Open("mysql", dataSource)
@@ -19,6 +19,6 @@ func Initialize() error {
 	return nil
 }
 
-func Close() {
+func CloseMysql() {
 	db.Close()
 }

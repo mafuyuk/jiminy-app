@@ -12,6 +12,7 @@ func Init() *echo.Echo {
 	v1 := e.Group("/jiminy")
 	{
 		// Youtube動画情報
+		v1.GET("/video/:id", controller.GetOneVideo)
 		v1.GET("/video", controller.GetVideo)
 		v1.POST("/video", controller.PostVideo)
 

@@ -1,9 +1,7 @@
 package repository
 
 import (
-	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"fmt"
 )
 
 type (
@@ -13,14 +11,11 @@ type (
 		Comment string
 		PlayTime string
 	}
-	Model struct {
-		gorm.Model
-		Videos   []Video
-	}
 )
 
 type VideoRepository interface {
-	SelectVideo(id int) error
+	SelectVideo() ([]Video, error)
+	SelectOneVideo(id int) ([]Video, error)
 	InsertVideo(videoId, comment, playTime string) error
 	UpdateVideo(id int, videoId, comment, playTime string) error
 	DeleteVideo(id string) error
@@ -33,15 +28,20 @@ func NewMysqlVideoRepository() VideoRepository {
 	return &mysqlVideo{}
 }
 
-func (v *mysqlVideo) SelectVideo (id int) error {
-	var m Model
-
-	err := db.Model(&m).Related(&Video{Id:	id}).Error
+func (v *mysqlVideo) SelectVideo () (video []Video, err error) {
+	err = db.Table("videos").Select("id, video_id, comment, play_time").Scan(&video).Error
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	fmt.Printf("zoo :%v", m)
-	return nil
+	return video, nil
+}
+
+func (v *mysqlVideo) SelectOneVideo (id int) (video []Video, err error) {
+	err = db.Table("videos").Select("id, video_id, comment, play_time").Where("id = ?", id).Scan(&video).Error
+	if err != nil {
+		return nil, err
+	}
+	return video, nil
 }
 
 func (v *mysqlVideo) InsertVideo(videoId, comment, playTime string) error {

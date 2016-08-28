@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"net/http"
 	"jiminy_app/repository"
+	"strconv"
 )
 
 type (
@@ -20,23 +21,39 @@ type (
 )
 
 /**
- * Youtube動画取得
+ * Youtube動画全件取得
  */
 func GetVideo(c echo.Context) error {
+	// MySQLコネクション生成
 	repository.InitializeMysql()
 	defer repository.CloseMysql()
 
+	// Youtube動画検索
 	videoRepository := repository.NewMysqlVideoRepository()
-	videoRepository.SelectVideo(1)
-
-	videoBody := Video {
-		Id: 1,
-		VideoId: "STg4Ya8bEFo",
-		Comment: "hello",
-		PlayTime: "03:00",
+	result, err := videoRepository.SelectVideo()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err)
 	}
+	return c.JSON(http.StatusOK, result)
+}
 
-	return c.JSON(http.StatusOK, videoBody)
+/**
+ * Youtube動画取得
+ */
+func GetOneVideo(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	// MySQLコネクション生成
+	repository.InitializeMysql()
+	defer repository.CloseMysql()
+
+	// Youtube動画検索
+	videoRepository := repository.NewMysqlVideoRepository()
+	result, err := videoRepository.SelectOneVideo(id)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err)
+	}
+	return c.JSON(http.StatusOK, result)
 }
 
 /**

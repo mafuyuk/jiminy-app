@@ -62,7 +62,7 @@ curl -H "Content-Type: application/json" -X GET http://localhost:61970/jiminy/vi
 curl -H "Content-Type: application/json" -X GET http://localhost:61970/jiminy/video/:id
 
 # =>
-[{"Id":2,"VideoId":"Su0p6OS2Zyc","Comment":"スキマスイッチの藍を秦基博が歌っている","PlayTime":"3:49"}]
+{"Id":2,"VideoId":"Su0p6OS2Zyc","Comment":"スキマスイッチの藍を秦基博が歌っている","PlayTime":"3:49"}
 ```
 ### POST
 ```bash

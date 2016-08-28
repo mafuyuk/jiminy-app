@@ -15,7 +15,7 @@ type (
 
 type VideoRepository interface {
 	SelectVideo() ([]Video, error)
-	SelectOneVideo(id int) ([]Video, error)
+	SelectOneVideo(id int) (*Video, error)
 	InsertVideo(videoId, comment, playTime string) error
 	UpdateVideo(id int, videoId, comment, playTime string) error
 	DeleteVideo(id string) error
@@ -36,12 +36,13 @@ func (v *mysqlVideo) SelectVideo () (video []Video, err error) {
 	return video, nil
 }
 
-func (v *mysqlVideo) SelectOneVideo (id int) (video []Video, err error) {
-	err = db.Table("videos").Select("id, video_id, comment, play_time").Where("id = ?", id).Scan(&video).Error
+func (v *mysqlVideo) SelectOneVideo (id int) (*Video, error) {
+	var video Video
+	err := db.Table("videos").Select("id, video_id, comment, play_time").Where("id = ?", id).Scan(&video).Error
 	if err != nil {
 		return nil, err
 	}
-	return video, nil
+	return &video, nil
 }
 
 func (v *mysqlVideo) InsertVideo(videoId, comment, playTime string) error {

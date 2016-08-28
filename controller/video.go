@@ -25,7 +25,7 @@ type (
  */
 func GetVideo(c echo.Context) error {
 	// MySQLコネクション生成
-	repository.InitializeMysql()
+	repository.InitMysql()
 	defer repository.CloseMysql()
 
 	// Youtube動画検索
@@ -44,7 +44,7 @@ func GetOneVideo(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	// MySQLコネクション生成
-	repository.InitializeMysql()
+	repository.InitMysql()
 	defer repository.CloseMysql()
 
 	// Youtube動画検索
@@ -64,7 +64,7 @@ func PostVideo(c echo.Context) error {
 	c.Bind(&videoRequest)
 
 	// MySQLコネクション生成
-	repository.InitializeMysql()
+	repository.InitMysql()
 	defer repository.CloseMysql()
 
 	// Youtube動画登録

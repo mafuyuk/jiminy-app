@@ -9,7 +9,7 @@ import (
 var	db *gorm.DB
 const sourceFormat string = "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true"
 
-func InitializeMysql() error {
+func InitMysql() error {
 	var err error
 	dataSource := fmt.Sprintf(sourceFormat, "root", "1111", "192.168.99.100", "3306", "test")
 	db, err = gorm.Open("mysql", dataSource)

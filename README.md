@@ -1,5 +1,18 @@
 # jiminy_app
 JiMiNy
+前準備
+===
+###MySQL
+```
+CREATE DATABASE test default character set utf8mb4;
+CREATE TABLE `videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `video_id` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `comment` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `play_time` varchar(255) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4
+```
 
 履歴情報
 ===

@@ -26,9 +26,11 @@ func InitMysql() error {
 	if err != nil {
 		return err
 	}
+	log.Println("start mysql session")
 	return nil
 }
 
 func CloseMysql() {
 	db.Close()
+	log.Println("close mysql session")
 }

@@ -11,14 +11,14 @@ import (
 
 type (
 	Video struct {
-		Id int `json:"id"`
-		VideoId        string `json:"video_id"`
-		Comment string `json:"comment"`
+		Id       int    `json:"id"`
+		VideoId  string `json:"video_id"`
+		Comment  string `json:"comment"`
 		PlayTime string `json:"play_time"`
 	}
 
 	PostVideoBody struct {
-		Result        int `json:"result"`
+		Result int `json:"result"`
 	}
 )
 
@@ -26,10 +26,6 @@ type (
  * Youtube動画全件取得
  */
 func GetVideo(c echo.Context) error {
-	// MySQLコネクション生成
-	repository.InitMysql()
-	defer repository.CloseMysql()
-
 	// Youtube動画検索
 	videoRepository := repository.NewMysqlVideoRepository()
 	result, err := videoRepository.SelectVideo()
@@ -44,10 +40,6 @@ func GetVideo(c echo.Context) error {
  */
 func GetOneVideo(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
-
-	// MySQLコネクション生成
-	repository.InitMysql()
-	defer repository.CloseMysql()
 
 	// Youtube動画検索
 	videoRepository := repository.NewMysqlVideoRepository()
@@ -65,17 +57,13 @@ func PostVideo(c echo.Context) error {
 	videoRequest := new(Video)
 	c.Bind(&videoRequest)
 
-	// MySQLコネクション生成
-	repository.InitMysql()
-	defer repository.CloseMysql()
-
 	// Youtube動画登録
 	videoRepository := repository.NewMysqlVideoRepository()
-	err := videoRepository.InsertVideo(videoRequest.VideoId,videoRequest.Comment, videoRequest.PlayTime)
+	err := videoRepository.InsertVideo(videoRequest.VideoId, videoRequest.Comment, videoRequest.PlayTime)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err)
 	}
 
 	// 正常レスポンス返却
-	return c.JSON(http.StatusOK, PostVideoBody{ Result:200 })
+	return c.JSON(http.StatusOK, PostVideoBody{Result: 200})
 }

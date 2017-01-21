@@ -6,3 +6,5 @@ import:
   - dialects/mysql
 - package: github.com/labstack/echo
   version: 3.0.3
+- package: github.com/BurntSushi/toml
+  version: 0.2.0

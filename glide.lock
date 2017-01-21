@@ -11,8 +11,6 @@ imports:
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
 - name: github.com/labstack/echo
   version: 8d504c1b699c757b267255c53b3e5219f9974abc
-  subpackages:
-  - engine/fasthttp
 - name: github.com/labstack/gommon
   version: f72d3c883f8ea180da8f085dd320804c41332ad1
   subpackages:

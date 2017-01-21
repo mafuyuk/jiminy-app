@@ -6,5 +6,3 @@ import:
   - dialects/mysql
 - package: github.com/labstack/echo
   version: 3.0.3
-  subpackages:
-  - engine/fasthttp

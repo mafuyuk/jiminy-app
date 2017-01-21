@@ -1,10 +1,12 @@
 package controller
 
 import (
-	"github.com/labstack/echo"
 	"net/http"
-	"jiminy_app/repository"
 	"strconv"
+
+	"jiminy-app/repository"
+
+	"github.com/labstack/echo"
 )
 
 type (

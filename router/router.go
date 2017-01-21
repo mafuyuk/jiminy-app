@@ -1,8 +1,9 @@
 package router
 
 import (
+	"jiminy-app/controller"
+
 	"github.com/labstack/echo"
-	"jiminy_app/controller"
 )
 
 func Init() *echo.Echo {

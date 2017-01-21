@@ -1,4 +1,4 @@
-# jiminy_app
+# jiminy-app
 JiMiNy
 前準備
 ===

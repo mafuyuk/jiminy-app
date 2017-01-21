@@ -1,11 +1,10 @@
 package main
 
 import (
-	"github.com/labstack/echo/engine/fasthttp"
-	"jiminy_app/router"
+	"jiminy-app/router"
 )
 
 func main() {
 	route := router.Init()
-	route.Run(fasthttp.New(":61970"))
+	route.Start(":61970")
 }

@@ -18,6 +18,7 @@ func InitMysql() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println(conf)
 
 	dataSource := fmt.Sprintf(sourceFormat, conf.User, conf.Pass, conf.Host, conf.Port, "test")
 	db, err = gorm.Open("mysql", dataSource)

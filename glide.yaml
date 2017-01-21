@@ -1,0 +1,8 @@
+package: jiminy-app
+import:
+- package: github.com/jinzhu/gorm
+  version: 1
+  subpackages:
+  - dialects/mysql
+- package: github.com/labstack/echo
+  version: 3.0.3

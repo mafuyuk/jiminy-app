@@ -6,10 +6,10 @@ import (
 
 type (
 	Video struct {
-		Id   int	`gorm:"primary_key"`
-		VideoId string
-		Comment string
-		PlayTime string
+		Id       int    `gorm:"primary_key" json:"id"`
+		VideoId  string `json:"video_id"`
+		Comment  string `json:"comment"`
+		PlayTime string `json:"play_time"`
 	}
 )
 
@@ -28,7 +28,7 @@ func NewMysqlVideoRepository() VideoRepository {
 	return &mysqlVideo{}
 }
 
-func (v *mysqlVideo) SelectVideo () (video []Video, err error) {
+func (v *mysqlVideo) SelectVideo() (video []Video, err error) {
 	err = db.Table("videos").Select("id, video_id, comment, play_time").Scan(&video).Error
 	if err != nil {
 		return nil, err
@@ -36,7 +36,7 @@ func (v *mysqlVideo) SelectVideo () (video []Video, err error) {
 	return video, nil
 }
 
-func (v *mysqlVideo) SelectOneVideo (id int) (*Video, error) {
+func (v *mysqlVideo) SelectOneVideo(id int) (*Video, error) {
 	var video Video
 	err := db.Table("videos").Select("id, video_id, comment, play_time").Where("id = ?", id).Scan(&video).Error
 	if err != nil {
@@ -47,8 +47,8 @@ func (v *mysqlVideo) SelectOneVideo (id int) (*Video, error) {
 
 func (v *mysqlVideo) InsertVideo(videoId, comment, playTime string) error {
 	video := Video{
-		VideoId:	videoId,
-		Comment:	comment,
+		VideoId:  videoId,
+		Comment:  comment,
 		PlayTime: playTime,
 	}
 
@@ -59,11 +59,11 @@ func (v *mysqlVideo) InsertVideo(videoId, comment, playTime string) error {
 	return nil
 }
 
-func(v *mysqlVideo) UpdateVideo(id int, videoId, comment, playTime string) error {
+func (v *mysqlVideo) UpdateVideo(id int, videoId, comment, playTime string) error {
 	video := Video{
-		Id:	id,
-		VideoId:	videoId,
-		Comment:	comment,
+		Id:       id,
+		VideoId:  videoId,
+		Comment:  comment,
 		PlayTime: playTime,
 	}
 
@@ -74,7 +74,7 @@ func(v *mysqlVideo) UpdateVideo(id int, videoId, comment, playTime string) error
 	return nil
 }
 
-func(v *mysqlVideo) DeleteVideo(id string) error {
+func (v *mysqlVideo) DeleteVideo(id string) error {
 	err := db.Where("id = ?", id).Delete(&Video{}).Error
 	if err != nil {
 		return err

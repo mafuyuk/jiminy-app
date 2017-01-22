@@ -9,7 +9,7 @@ import (
 func main() {
 	// MySQLコネクション生成
 	if err := repository.InitMysql(); err != nil {
-		log.Println("failed start mysql session")
+		log.Println("failed start mysql session: ", err)
 		return
 	}
 	defer repository.CloseMysql()

@@ -13,7 +13,7 @@ type DBConfig struct {
 
 func GetDBConfig() (*DBConfig, error) {
 	var conf DBConfig
-	if _, err := toml.Decode("_tools/config.toml", &conf); err != nil {
+	if _, err := toml.Decode("../_tools/config.toml", &conf); err != nil {
 		return nil, err
 	}
 	return &conf, nil

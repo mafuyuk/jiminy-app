@@ -3,11 +3,15 @@ package main
 import (
 	"jiminy-app/repository"
 	"jiminy-app/router"
+	"log"
 )
 
 func main() {
 	// MySQLコネクション生成
-	repository.InitMysql()
+	if err := repository.InitMysql(); err != nil {
+		log.Println("failed start mysql session")
+		return
+	}
 	defer repository.CloseMysql()
 
 	route := router.Init()
